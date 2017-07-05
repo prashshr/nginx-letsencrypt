@@ -12,20 +12,20 @@ Features:
 
 Requirements:
 - The respective domain configuration file should exist under,
-    "<NGINX_INSTALL_DIR>/conf.d/<domainname>.conf"
+    "<NGINX_INSTALL_DIR>/conf.d/<domain_name>.conf"
 
 - The valid SSL certificates for domains should exist under following directory structure with respective symbolic links as shown below,
 
-    Certificates & Keys
-    ---------------------------------------------
-    "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/fullchain.pem"
-    "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/privkey.pem"
+Certificates & Keys
+---------------------------------------------
+"<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem"
+"<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/privkey.pem"
 
-    Symbolic Links to Certificates & Keys
-    ---------------------------------------------
-    [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domainname>/<domainname>_fullchain.pem"
+Symbolic Links to Certificates & Keys
+---------------------------------------------
+[user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>_fullchain.pem"
 
-    [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/privkey.pem" "<NGINX_INSTALL_DIR>/ssl/<domainname>/<domainname>privkey.pem"
+[user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/privkey.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>privkey.pem"
 
 
 Note:
