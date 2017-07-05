@@ -1,4 +1,4 @@
-A hardened NGINX image bundled with auto-renewal setup without downtime to get Letsencrypt certificates for multiple domains.
+- A hardened NGINX image bundled with auto-renewal setup without downtime to get Letsencrypt certificates for multiple domains.
 
 Operating System: ubuntu:16.04
 Nginx Version: 1.13.1
@@ -24,9 +24,9 @@ Certificates & Keys:
 
 Symbolic Links to Certificates & Keys:
 ---------------------------------------------
-[user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>_fullchain.pem"
+- [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>_fullchain.pem"
 
-[user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/privkey.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>privkey.pem"
+- [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/privkey.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>privkey.pem"
 
 
 Note
