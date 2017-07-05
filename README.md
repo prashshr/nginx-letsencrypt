@@ -18,8 +18,8 @@ Requirements:
 
     Certificates & Keys
     ---------------------------------------------
-    <NGINX_INSTALL_DIR>/ssl/<domainname>/live/fullchain.pem
-    <NGINX_INSTALL_DIR>/ssl/<domainname>/live/privkey.pem
+    "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/fullchain.pem"
+    "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/privkey.pem"
 
     Symbolic Links to Certificates & Keys
     ---------------------------------------------
