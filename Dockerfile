@@ -48,7 +48,7 @@ RUN apt-get update \
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install postfix mailutils -y
 
-RUN groupadd -g ${NGINXUSERID} nginxuser && useradd -r -s /bin/bash -d /home/${NGINXUSER}  -u ${NGINXGRPID}  -g ${NGINXUSER}  -m ${NGINXUSER} 
+RUN groupadd -g ${NGINXUSERID} ${NGINXUSER} && useradd -r -s /bin/bash -d /home/${NGINXUSER}  -u ${NGINXGRPID}  -g ${NGINXUSER}  -m ${NGINXUSER} 
 RUN echo "${NGINXUSER}:sasfEQPt9v8hg" | chpasswd && echo "root:sasfEQPt9v8hg" | chpasswd
 
 RUN git clone https://github.com/letsencrypt/letsencrypt /tmp/letsencrypt 
