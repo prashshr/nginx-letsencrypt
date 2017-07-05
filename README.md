@@ -23,9 +23,9 @@ Requirements:
 
     Symbolic Links to Certificates & Keys
     ---------------------------------------------
-    [user@server ~]# ln -s <NGINX_INSTALL_DIR>/ssl/<domainname>/live/fullchain.pem "<NGINX_INSTALL_DIR>/ssl/<domainname>/<domainname>_fullchain.pem"
+    [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domainname>/<domainname>_fullchain.pem"
 
-    [user@server ~]# ln -s <NGINX_INSTALL_DIR>/ssl/<domainname>/live/privkey.pem "<NGINX_INSTALL_DIR>/ssl/<domainname>/<domainname>privkey.pem"
+    [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domainname>/live/privkey.pem" "<NGINX_INSTALL_DIR>/ssl/<domainname>/<domainname>privkey.pem"
 
 
 Note:
