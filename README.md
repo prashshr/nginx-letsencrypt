@@ -12,7 +12,7 @@ Features:
 
 Requirements:
 - The respective domain configuration file should exist under,
-    <NGINX_INSTALL_DIR>/conf.d/<domainname>.conf
+    "<NGINX_INSTALL_DIR>/conf.d/<domainname>.conf"
 
 - The valid SSL certificates for domains should exist under following directory structure with respective symbolic links as shown below,
 
