@@ -1,4 +1,4 @@
-A hardened NGINX image bundled with auto-renewal setup to get Letsencrypt certificates without downtime for multiple domains.
+A hardened NGINX image bundled with auto-renewal setup to get Letsencrypt certificates for multiple domains without aa downtime.
 
 - Operating System: ubuntu:16.04
 - Nginx Version: 1.13.1
