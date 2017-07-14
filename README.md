@@ -15,9 +15,9 @@ Requirements
 - The respective domain configuration file should exist under,
     "<NGINX_INSTALL_DIR>/conf.d/<domain_name>.conf"
 
-- The valid SSL certificates for domains should exist under following directory structure with respective symbolic links as shown below,
+- The valid SSL certificates for domains should be existing under a specific directory structure with respective symbolic links as shown below (currently certificates are blank),
 
-Certificates & Keys:
+Certificates & Keys required PATH:
 ---------------------------------------------
 - "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem" 
 - "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/privkey.pem"
@@ -32,4 +32,4 @@ Symbolic Links to Certificates & Keys:
 Note
 ---------------------------------------------
 - Default password for root and nginxuser is "nginx". CHANGE IT!
-- Default port is 80. To enable SSL, place the relevant certificates as mentioned above and as 'example.com' sample in the image.
+- Default port is 80. To enable SSL, place the relevant certificates as shown in repo with 'example.com' sample.
