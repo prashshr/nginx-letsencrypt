@@ -7,6 +7,7 @@ ENV NGINX_VERSION 1.13.1-1~stretch
 ENV NJS_VERSION   1.13.1.0.1.10-1~stretch
 
 ENV NGINXUSER nginxuser
+ENV NGINXUSER_HOMEDIR /home/nginxuser
 ENV NGINXUSERID 752
 ENV NGINXGRPID 752
 ENV NGINX_INSTALL_DIR /etc/nginx
@@ -48,27 +49,29 @@ RUN apt-get update \
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install postfix mailutils -y
 
-RUN groupadd -g ${NGINXUSERID} ${NGINXUSER} && useradd -r -s /bin/bash -d /home/${NGINXUSER}  -u ${NGINXGRPID}  -g ${NGINXUSER}  -m ${NGINXUSER} 
+RUN groupadd -g ${NGINXUSERID} ${NGINXUSER} && useradd -r -s /bin/bash -d ${NGINXUSER_HOMEDIR}  -u ${NGINXGRPID}  -g ${NGINXUSER}  -m ${NGINXUSER} 
 RUN echo "${NGINXUSER}:sasfEQPt9v8hg" | chpasswd && echo "root:sasfEQPt9v8hg" | chpasswd
 
 RUN git clone https://github.com/letsencrypt/letsencrypt /tmp/letsencrypt 
 
-RUN chown ${NGINXUSER}:${NGINXUSER} /home/${NGINXUSER} /tmp/letsencrypt
+RUN chown ${NGINXUSER}:${NGINXUSER} ${NGINXUSER_HOMEDIR} /tmp/letsencrypt
 
 RUN /tmp/letsencrypt/letsencrypt-auto --os-packages-only -q
 
 RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/${TIMEZONE}/etc/localtime
 RUN dpkg-reconfigure -f noninteractive tzdata
 
-COPY files/letsencrypt_renew.sh /home/${NGINXUSER}/ 
+COPY files/letsencrypt_renew.sh ${NGINXUSER_HOMEDIR}/ 
 COPY files/sudoers_nginx /etc/sudoers
-COPY files/startup_nginx.sh /home/${NGINXUSER}/
+COPY files/startup_nginx.sh ${NGINXUSER_HOMEDIR}/
 
 ADD conf.d ${NGINX_INSTALL_DIR}/conf.d
 ADD ssl ${NGINX_INSTALL_DIR}/ssl
 RUN rm -f ${NGINX_INSTALL_DIR}/conf.d/default.conf
 
+RUN chmod +x ${NGINXUSER_HOMEDIR}/startup_nginx.sh ${NGINXUSER_HOMEDIR}/letsencrypt_renew.sh 
+
 USER ${NGINXUSER} 
-WORKDIR /home/${NGINXUSER} 
+WORKDIR ${NGINXUSER_HOMEDIR} 
 
 CMD ["./startup_nginx.sh"]

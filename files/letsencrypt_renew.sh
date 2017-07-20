@@ -1,14 +1,15 @@
 #!/bin/bash
 
 NGINXUSER=nginxuser
+NGINXUSER_HOMEDIR=/home/nginxuser
 NGINX_INSTALL_DIR=/etc/nginx
-NGINX_SSL_DIR=${NGINX_SSL_DIR}/ssl
-NGINX_CONF_DIR=${NGINX_SSL_DIR}/conf.d
-LETSENCRYPT_CONF_DIR=~${NGINXUSER}
-LETSENCRYPT_LOGS_DIR=~${NGINXUSER}
-LETSENCRYPT_WORK_DIR=~${NGINXUSER}
+NGINX_SSL_DIR=${NGINX_INSTALL_DIR}/ssl
+NGINX_CONF_DIR=${NGINX_INSTALL_DIR}/conf.d
+LETSENCRYPT_CONF_DIR=${NGINXUSER_HOMEDIR}
+LETSENCRYPT_LOGS_DIR=${NGINXUSER_HOMEDIR}
+LETSENCRYPT_WORK_DIR=${NGINXUSER_HOMEDIR}
 LETSENCRYPT_INSTALL_DIR=/tmp/letsencrypt
-LETSENCRYPT_ADMIN_EMAIL=prash.shr@gmail.com
+LETSENCRYPT_ADMIN_EMAIL=prashant.sharma@hitabis.de
 
 for a in `cd ${NGINX_INSTALL_DIR}/conf.d/; ls *.conf | sed 's/.conf//g'`
 do
@@ -36,7 +37,7 @@ do
                         cp -rHp ${NGINX_SSL_DIR}/$a/live/*.* ${NGINX_SSL_DIR}/$a/oldcerts_`date +%d%m%y`/     2>&1
                         echo "Copied Old certificates from ${NGINX_SSL_DIR}/$a/live/* to ${NGINX_SSL_DIR}/$a/oldcerts_`date +%d%m%y`/"
                         echo "Requesting letsencrypt certificate for $a.."
-                        sudo chown -R ${NGINXUSER}:${NGINXUSER} ${LETSENCRYPT_CONF_DIR} ${LETSENCRYPT_LOGS_DIR} ${LETSENCRYPT_WORK_DIR} /etc/letsencrypt/ /var/log/ ~${NGINXUSER}/ 
+                        sudo chown -R ${NGINXUSER}:${NGINXUSER} ${LETSENCRYPT_CONF_DIR} ${LETSENCRYPT_LOGS_DIR} ${LETSENCRYPT_WORK_DIR} ${LETSENCRYPT_INSTALL_DIR} /var/log/
                         if [ `echo $a| awk -F'.' '{ print NF-1 }'` -eq 1 ] ; then
                                 echo "Requesting certificates for $a and www.${a}"
                                 ${LETSENCRYPT_INSTALL_DIR}/letsencrypt-auto certonly  \
@@ -62,7 +63,7 @@ do
                                 -d ${a}
                         fi
                 echo "copying new certificates to $a nginx ssl config"
-		sudo chown -R ${NGINXUSER}:${NGINXUSER} ${LETSENCRYPT_CONF_DIR} ${LETSENCRYPT_LOGS_DIR} ${LETSENCRYPT_WORK_DIR} ${LETSENCRYPT_WORK_DIR}/ ${NGINX_INSTALL_DIR}/ /etc/letsencrypt/ /var/log/
+		sudo chown -R ${NGINXUSER}:${NGINXUSER} ${LETSENCRYPT_CONF_DIR} ${LETSENCRYPT_LOGS_DIR} ${LETSENCRYPT_WORK_DIR} ${LETSENCRYPT_INSTALL_DIR} /var/log/
                 sudo cp -H ${LETSENCRYPT_WORK_DIR}/live/$a/* ${NGINX_INSTALL_DIR}/ssl/$a/live/
                 sudo service nginx reload
                 echo "Renewal process finished for domain $a"
