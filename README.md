@@ -24,10 +24,11 @@ Certificates & Keys required PATH:
 
 Symbolic Links to Certificates & Keys:
 ---------------------------------------------
-- [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>_fullchain.pem"
+```sh
+[user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/fullchain.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>_fullchain.pem"
 
 - [user@server ~]# ln -s "<NGINX_INSTALL_DIR>/ssl/<domain_name>/live/privkey.pem" "<NGINX_INSTALL_DIR>/ssl/<domain_name>/<domain_name>privkey.pem"
-
+```
 
 Note
 ---------------------------------------------
